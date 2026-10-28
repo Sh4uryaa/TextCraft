@@ -34,9 +34,13 @@ private void updateStatusBar() {
         int column = caretPosition
                 - textArea.getLineStartOffset(line);
 
+        String text = textArea.getText().trim();
+        int wordCount = text.isEmpty() ? 0 : text.split("\\s+").length;
+
         statusBar.setText(
                 " Line " + (line + 1)
                 + ", Column " + (column + 1)
+                + " | Words: " + wordCount
         );
     } catch (javax.swing.text.BadLocationException ex) {
         statusBar.setText(" Ready");
