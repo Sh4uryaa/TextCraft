@@ -21,17 +21,54 @@ public class EditorFrame extends JFrame {
         add(statusBar, BorderLayout.SOUTH);
     }
 
-    private JMenuBar createMenuBar() {
-        JMenuBar bar = new JMenuBar();
 
-        String[] menus = {"File", "Edit", "View", "Help"};
+private JMenuBar createMenuBar() {
+    JMenuBar bar = new JMenuBar();
 
-        for (String name : menus) {
-            bar.add(new JMenu(name));
-        }
+    // File menu
+    JMenu fileMenu = new JMenu("File");
+    addMenuItem(fileMenu, "New", "control N");
+    addMenuItem(fileMenu, "Open", "control O");
+    addMenuItem(fileMenu, "Save", "control S");
+    addMenuItem(fileMenu, "Save As", "control shift S");
 
-        return bar;
+    // Edit menu
+    JMenu editMenu = new JMenu("Edit");
+    addMenuItem(editMenu, "Undo", "control Z");
+    addMenuItem(editMenu, "Redo", "control Y");
+    editMenu.addSeparator();
+    addMenuItem(editMenu, "Find", "control F");
+    addMenuItem(editMenu, "Replace", "control H");
+    editMenu.addSeparator();
+    addMenuItem(editMenu, "Select All", "control A");
+
+    // View menu
+    JMenu viewMenu = new JMenu("View");
+    addMenuItem(viewMenu, "Light Theme", null);
+    addMenuItem(viewMenu, "Dark Theme", null);
+
+    // Help menu
+    JMenu helpMenu = new JMenu("Help");
+    addMenuItem(helpMenu, "About TextCraft", null);
+
+    bar.add(fileMenu);
+    bar.add(editMenu);
+    bar.add(viewMenu);
+    bar.add(helpMenu);
+
+    return bar;
+}
+
+private void addMenuItem(JMenu menu, String title, String shortcut) {
+    JMenuItem item = new JMenuItem(title);
+
+    if (shortcut != null) {
+        item.setAccelerator(KeyStroke.getKeyStroke(shortcut));
     }
+
+    menu.add(item);
+}
+
 
     public EditorPanel getEditorPanel() {
         return editorPanel;
