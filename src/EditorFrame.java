@@ -6,6 +6,7 @@ public class EditorFrame extends JFrame {
 
     private final EditorPanel editorPanel;
     private final JLabel statusBar;
+    private FindReplacePanel findReplacePanel;
     public EditorFrame() {
         setTitle("TextCraft - Java Text Editor");
         setSize(900, 600);
@@ -13,7 +14,10 @@ public class EditorFrame extends JFrame {
         setLocationRelativeTo(null);
 
         editorPanel = new EditorPanel();
-        statusBar = new JLabel(" Line 1, Column 1");    
+        statusBar = new JLabel(" Line 1, Column 1");   
+        findReplacePanel = new FindReplacePanel();
+        add(findReplacePanel, BorderLayout.NORTH);
+        findReplacePanel.setVisible(false);  
         setJMenuBar(createMenuBar());
         add(editorPanel, BorderLayout.CENTER);
         add(statusBar, BorderLayout.SOUTH);
@@ -55,8 +59,24 @@ private JMenuBar createMenuBar() {
     addMenuItem(editMenu, "Undo", "control Z");
     addMenuItem(editMenu, "Redo", "control Y");
     editMenu.addSeparator();
-    addMenuItem(editMenu, "Find", "control F");
-    addMenuItem(editMenu, "Replace", "control H");
+    JMenuItem findItem = new JMenuItem("Find");
+    findItem.setAccelerator(KeyStroke.getKeyStroke("control F"));
+    findItem.addActionListener(e -> {
+        findReplacePanel.setVisible(true);
+        findReplacePanel.revalidate();
+        findReplacePanel.repaint();
+    });
+
+    JMenuItem replaceItem = new JMenuItem("Replace");
+    replaceItem.setAccelerator(KeyStroke.getKeyStroke("control R"));
+    replaceItem.addActionListener(e -> {
+        findReplacePanel.setVisible(true);
+        findReplacePanel.revalidate();
+        findReplacePanel.repaint();
+    });
+
+    editMenu.add(findItem);
+    editMenu.add(replaceItem);
     editMenu.addSeparator();
     addMenuItem(editMenu, "Select All", "control A");
 
