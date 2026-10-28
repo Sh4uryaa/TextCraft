@@ -18,5 +18,9 @@ public class FindReplacePanel extends JPanel {
         add(new JButton("Replace All"));
 
         add(new JCheckBox("Match case"));
+        JButton closeButton = new JButton("X");
+        add(closeButton);
+
+    closeButton.addActionListener(e -> setVisible(false));
     }
 }
