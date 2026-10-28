@@ -24,6 +24,13 @@ public class EditorFrame extends JFrame {
         editorPanel.getTextArea().addCaretListener(e -> updateStatusBar());
     }
     
+private void showFindReplacePanel() {
+    findReplacePanel.setVisible(true);
+    findReplacePanel.revalidate();
+    findReplacePanel.repaint();
+    findReplacePanel.requestFocusInWindow();
+}
+
 private void updateStatusBar() {
     JTextArea textArea = editorPanel.getTextArea();
 
@@ -57,27 +64,24 @@ private JMenuBar createMenuBar() {
     addMenuItem(fileMenu, "Open", "control O");
     addMenuItem(fileMenu, "Save", "control S");
     addMenuItem(fileMenu, "Save As", "control shift S");
-
     // Edit menu
     JMenu editMenu = new JMenu("Edit");
     addMenuItem(editMenu, "Undo", "control Z");
     addMenuItem(editMenu, "Redo", "control Y");
     editMenu.addSeparator();
+
+    
+
     JMenuItem findItem = new JMenuItem("Find");
     findItem.setAccelerator(KeyStroke.getKeyStroke("control F"));
-    findItem.addActionListener(e -> {
-        findReplacePanel.setVisible(true);
-        findReplacePanel.revalidate();
-        findReplacePanel.repaint();
-    });
+    findItem.addActionListener(e -> showFindReplacePanel());
 
     JMenuItem replaceItem = new JMenuItem("Replace");
     replaceItem.setAccelerator(KeyStroke.getKeyStroke("control R"));
-    replaceItem.addActionListener(e -> {
-        findReplacePanel.setVisible(true);
-        findReplacePanel.revalidate();
-        findReplacePanel.repaint();
-    });
+    replaceItem.addActionListener(e -> showFindReplacePanel());
+
+    editMenu.add(findItem);
+    editMenu.add(replaceItem);
 
     editMenu.add(findItem);
     editMenu.add(replaceItem);
