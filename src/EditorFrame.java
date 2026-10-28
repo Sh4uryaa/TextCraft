@@ -5,7 +5,7 @@ import java.awt.*;
 public class EditorFrame extends JFrame {
 
     private final EditorPanel editorPanel;
-
+    private final JLabel statusBar;
     public EditorFrame() {
         setTitle("TextCraft - Java Text Editor");
         setSize(900, 600);
@@ -13,13 +13,31 @@ public class EditorFrame extends JFrame {
         setLocationRelativeTo(null);
 
         editorPanel = new EditorPanel();
-
-        JLabel statusBar = new JLabel(" Ready");
-
+        statusBar = new JLabel(" Line 1, Column 1");    
         setJMenuBar(createMenuBar());
         add(editorPanel, BorderLayout.CENTER);
         add(statusBar, BorderLayout.SOUTH);
+        editorPanel.getTextArea().addCaretListener(e -> updateStatusBar());
     }
+    
+private void updateStatusBar() {
+    JTextArea textArea = editorPanel.getTextArea();
+
+    int caretPosition = textArea.getCaretPosition();
+
+    try {
+        int line = textArea.getLineOfOffset(caretPosition);
+        int column = caretPosition
+                - textArea.getLineStartOffset(line);
+
+        statusBar.setText(
+                " Line " + (line + 1)
+                + ", Column " + (column + 1)
+        );
+    } catch (javax.swing.text.BadLocationException ex) {
+        statusBar.setText(" Ready");
+    }
+}
 
 
 private JMenuBar createMenuBar() {
