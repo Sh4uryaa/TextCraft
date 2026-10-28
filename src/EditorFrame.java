@@ -86,9 +86,19 @@ private JMenuBar createMenuBar() {
 
     // View menu
     JMenu viewMenu = new JMenu("View");
+    JCheckBoxMenuItem wordWrapItem =
+        new JCheckBoxMenuItem("Word Wrap");
+
+    wordWrapItem.addActionListener(e -> {
+        boolean enabled = wordWrapItem.isSelected();
+
+        editorPanel.getTextArea().setLineWrap(enabled);
+        editorPanel.getTextArea().setWrapStyleWord(enabled);
+
+});
     addMenuItem(viewMenu, "Light Theme", null);
     addMenuItem(viewMenu, "Dark Theme", null);
-
+viewMenu.add(wordWrapItem);
     // Help menu
     JMenu helpMenu = new JMenu("Help");
     addMenuItem(helpMenu, "About TextCraft", null);
