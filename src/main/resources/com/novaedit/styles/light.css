@@ -1,0 +1,510 @@
+/* ==========================================================================
+   NovaEdit Light Theme - Clean Modern Visual System
+   ========================================================================== */
+
+.root {
+    -color-bg: #ffffff;
+    -color-panel: #f7f8fa;
+    -color-surface: #ebeef2;
+    -color-border: #d3d5db;
+    -color-border-subtle: #e1e4e8;
+    -color-text: #1f2328;
+    -color-text-muted: #656d76;
+    -color-accent: #2f6fed;
+    -color-accent-hover: #4382f7;
+    -color-accent-active: #1b53c7;
+    -color-selection: #add6ff;
+    -color-current-line: #f0f3f6;
+    -color-hover: #eaecef;
+    -color-active: #dfe2e5;
+    -color-success: #2da44e;
+    -color-warning: #bf8700;
+    -color-error: #cf222e;
+
+    -fx-font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: -color-bg;
+    -fx-text-fill: -color-text;
+}
+
+/* Scrollbars */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 2;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #c0c4cc;
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #a0a4ac;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+/* Menu Bar */
+.menu-bar {
+    -fx-background-color: -color-panel;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 2 8;
+}
+
+.menu-bar .menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text;
+    -fx-padding: 4 8;
+    -fx-background-radius: 4px;
+}
+
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:showing {
+    -fx-background-color: -color-hover;
+}
+
+.menu-bar .menu-button .label {
+    -fx-text-fill: -color-text;
+}
+
+.context-menu {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 4);
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 6 12;
+    -fx-background-radius: 4px;
+}
+
+.menu-item:focused,
+.menu-item:hover {
+    -fx-background-color: -color-accent;
+}
+
+.menu-item:focused .label,
+.menu-item:hover .label {
+    -fx-text-fill: #ffffff;
+}
+
+.menu-item .label {
+    -fx-text-fill: -color-text;
+}
+
+/* Toolbars */
+.toolbar-container {
+    -fx-background-color: -color-panel;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 4 8;
+}
+
+.nova-toolbar {
+    -fx-background-color: transparent;
+    -fx-spacing: 4px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.toolbar-group {
+    -fx-spacing: 2px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.toolbar-separator {
+    -fx-background-color: -color-border;
+    -fx-pref-width: 1px;
+    -fx-pref-height: 20px;
+    -fx-margin: 0 4px;
+}
+
+.tool-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text;
+    -fx-background-radius: 6px;
+    -fx-padding: 5 8;
+    -fx-alignment: CENTER;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-radius: 6px;
+}
+
+.tool-button:hover {
+    -fx-background-color: -color-hover;
+}
+
+.tool-button:pressed {
+    -fx-background-color: -color-active;
+}
+
+.tool-button:disabled {
+    -fx-opacity: 0.4;
+}
+
+.tool-button .nova-icon {
+    -fx-icon-color: -color-text;
+}
+
+/* Activity Bar */
+.activity-bar {
+    -fx-background-color: -color-surface;
+    -fx-pref-width: 48px;
+    -fx-border-color: transparent -color-border transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-alignment: TOP_CENTER;
+    -fx-padding: 8 0;
+    -fx-spacing: 6px;
+}
+
+.activity-button {
+    -fx-background-color: transparent;
+    -fx-pref-width: 48px;
+    -fx-pref-height: 44px;
+    -fx-alignment: CENTER;
+    -fx-cursor: hand;
+    -fx-border-color: transparent transparent transparent transparent;
+    -fx-border-width: 0 0 0 3px;
+}
+
+.activity-button:hover {
+    -fx-background-color: -color-hover;
+}
+
+.activity-button.active {
+    -fx-border-color: transparent transparent transparent -color-accent;
+    -fx-border-width: 0 0 0 3px;
+    -fx-background-color: #ffffff;
+}
+
+.activity-button .nova-icon {
+    -fx-icon-color: -color-text-muted;
+}
+
+.activity-button.active .nova-icon {
+    -fx-icon-color: -color-accent;
+}
+
+/* Side Panels */
+.side-panel {
+    -fx-background-color: -color-panel;
+    -fx-border-color: transparent -color-border transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.side-panel-header {
+    -fx-background-color: -color-panel;
+    -fx-padding: 8 12;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.side-panel-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-text-muted;
+    -fx-letter-spacing: 0.5px;
+}
+
+/* Split Pane */
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.split-pane-divider {
+    -fx-background-color: -color-border;
+    -fx-padding: 1px;
+}
+
+.split-pane-divider:hover {
+    -fx-background-color: -color-accent;
+}
+
+/* Tab Manager */
+.editor-tab-pane {
+    -fx-background-color: -color-bg;
+}
+
+.tab-header-area {
+    -fx-background-color: -color-panel;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-pref-height: 35px;
+    -fx-padding: 0 4;
+}
+
+.tab-bar {
+    -fx-spacing: 2px;
+    -fx-alignment: BOTTOM_LEFT;
+}
+
+.custom-tab {
+    -fx-background-color: -color-panel;
+    -fx-border-color: transparent -color-border transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 6 12;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 8px;
+    -fx-cursor: hand;
+    -fx-border-radius: 4px 4px 0 0;
+    -fx-background-radius: 4px 4px 0 0;
+}
+
+.custom-tab:hover {
+    -fx-background-color: -color-hover;
+}
+
+.custom-tab.active {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-accent -color-border transparent -color-border;
+    -fx-border-width: 2 1 0 1;
+}
+
+.tab-title {
+    -fx-text-fill: -color-text;
+    -fx-font-size: 12px;
+}
+
+.tab-close-btn {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.tab-close-btn:hover {
+    -fx-background-color: #d0d3d8;
+}
+
+.dirty-indicator {
+    -fx-fill: -color-accent;
+}
+
+/* Breadcrumb Bar */
+.breadcrumb-bar {
+    -fx-background-color: -color-bg;
+    -fx-padding: 4 12;
+    -fx-border-color: transparent transparent -color-border-subtle transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-spacing: 6px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.breadcrumb-item {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 11px;
+}
+
+.breadcrumb-item:hover {
+    -fx-text-fill: -color-text;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+/* CodeArea / Editor */
+.code-area {
+    -fx-background-color: -color-bg;
+    -fx-font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    -fx-font-size: 14px;
+    -fx-highlight-fill: -color-selection;
+    -fx-highlight-text-fill: -color-text;
+}
+
+.lineno {
+    -fx-background-color: -color-bg;
+    -fx-text-fill: #999ba3;
+    -fx-font-family: 'JetBrains Mono', 'Consolas', monospace;
+    -fx-font-size: 13px;
+    -fx-padding: 0 8 0 8;
+    -fx-border-color: transparent -color-border-subtle transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.current-line-highlight {
+    -fx-background-color: -color-current-line;
+}
+
+.matching-bracket {
+    -fx-border-color: -color-accent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+}
+
+/* Syntax Token Colors (Light) */
+.token-keyword { -fx-fill: #0033b3; -fx-font-weight: bold; }
+.token-type { -fx-fill: #00627a; }
+.token-string { -fx-fill: #067d17; }
+.token-number { -fx-fill: #1750eb; }
+.token-comment { -fx-fill: #8c8c8c; -fx-font-style: italic; }
+.token-operator { -fx-fill: #24292e; }
+.token-punctuation { -fx-fill: #24292e; }
+.token-identifier { -fx-fill: #1f2328; }
+.token-tag { -fx-fill: #22863a; -fx-font-weight: bold; }
+.token-attribute { -fx-fill: #6f42c1; }
+.token-heading { -fx-fill: #0366d6; -fx-font-weight: bold; }
+.token-bold { -fx-font-weight: bold; }
+.token-italic { -fx-font-style: italic; }
+.token-link { -fx-fill: #0366d6; -fx-underline: true; }
+.token-plain { -fx-fill: #1f2328; }
+
+/* Status Bar */
+.status-bar {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-pref-height: 26px;
+    -fx-padding: 2 10;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 12px;
+}
+
+.status-item {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+    -fx-padding: 2 6;
+    -fx-background-radius: 4px;
+}
+
+.status-item:hover {
+    -fx-background-color: -color-hover;
+    -fx-text-fill: -color-text;
+}
+
+/* Find / Replace Bar */
+.find-replace-bar {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border transparent -color-border transparent;
+    -fx-border-width: 1 0 1 0;
+    -fx-padding: 8 12;
+    -fx-spacing: 8px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.text-field {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-text-fill: -color-text;
+    -fx-padding: 4 8;
+}
+
+.text-field:focused {
+    -fx-border-color: -color-accent;
+}
+
+/* Bottom Panel */
+.bottom-panel {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Command Palette Overlay */
+.palette-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+}
+
+.palette-box {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 20, 0, 0, 8);
+    -fx-padding: 12px;
+    -fx-pref-width: 550px;
+    -fx-spacing: 8px;
+}
+
+.palette-input {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-text;
+}
+
+.palette-item {
+    -fx-padding: 6 10;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.palette-item:hover,
+.palette-item.selected {
+    -fx-background-color: -color-hover;
+}
+
+.palette-shortcut {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 11px;
+}
+
+/* Toast Notification */
+.toast-container {
+    -fx-padding: 16px;
+    -fx-spacing: 8px;
+    -fx-alignment: BOTTOM_RIGHT;
+}
+
+.toast {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10 16;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 12, 0, 0, 4);
+    -fx-spacing: 8px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.toast-message {
+    -fx-text-fill: -color-text;
+    -fx-font-size: 12px;
+}
+
+/* TreeView (File Explorer) */
+.tree-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.tree-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text;
+    -fx-padding: 3 6;
+}
+
+.tree-cell:filled:hover {
+    -fx-background-color: -color-hover;
+}
+
+.tree-cell:filled:selected {
+    -fx-background-color: -color-selection;
+    -fx-text-fill: #1f2328;
+}
