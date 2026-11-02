@@ -1,7 +1,6 @@
 
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.text.*;
 import java.awt.*;
 
 public class EditorPanel extends JPanel {
