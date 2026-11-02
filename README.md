@@ -1,4 +1,4 @@
-# TextCraft — Java Text Editor
+# TextCraft - Java Text Editor
 
 TextCraft is a desktop-based text editor developed using **Java Swing** as an Object-Oriented Programming (OOP) project. It aims to provide a simple, user-friendly interface for creating, editing, and managing text documents.
 
