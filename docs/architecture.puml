@@ -1,0 +1,30 @@
+@startuml
+title TextCraft - architecture (calls go downward only)
+skinparam componentStyle rectangle
+package "UI (Swing)" { [MainFrame] [Panels and dialogs] [ThemeManager] }
+package "Services (facades)" { [AuthService] [DocumentService] [AIService] [StudyService] [CodeRunService] [VoiceService] [AutoSaveService] }
+package "Providers / DAOs" { [AIProvider] [CodeRunner] [SpeechRecognizer] [TextToSpeechService] [FileFormatHandler] [GenericDAO + DAOs] }
+cloud "External" { [Gemini API] [Google OAuth] [Speech-to-Text REST] [Judge0] database "MySQL" [Local files + OS voices] }
+[MainFrame] --> [AuthService]
+[MainFrame] --> [DocumentService]
+[Panels and dialogs] --> [AIService]
+[Panels and dialogs] --> [StudyService]
+[MainFrame] --> [CodeRunService]
+[MainFrame] --> [VoiceService]
+[MainFrame] --> [AutoSaveService]
+[AIService] --> [AIProvider]
+[StudyService] --> [AIProvider]
+[CodeRunService] --> [CodeRunner]
+[VoiceService] --> [SpeechRecognizer]
+[DocumentService] --> [GenericDAO + DAOs]
+[AuthService] --> [GenericDAO + DAOs]
+[MainFrame] --> [FileFormatHandler]
+[MainFrame] --> [TextToSpeechService]
+[AIProvider] --> [Gemini API] : HTTPS
+[AuthService] --> [Google OAuth] : HTTPS
+[SpeechRecognizer] --> [Speech-to-Text REST] : HTTPS
+[CodeRunner] --> [Judge0] : HTTPS
+[GenericDAO + DAOs] --> [MySQL] : JDBC
+[FileFormatHandler] --> [Local files + OS voices]
+[TextToSpeechService] --> [Local files + OS voices]
+@enduml

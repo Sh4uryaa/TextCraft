@@ -1,0 +1,25 @@
+@startuml
+title TextCraft - use cases
+left to right direction
+actor User
+actor "Google" as G
+actor "Gemini" as AI
+actor "Judge0" as J
+rectangle TextCraft {
+  User --> (Edit rich text)
+  User --> (Open / save many formats)
+  User --> (Find and replace)
+  User --> (Switch theme / Lite mode)
+  User --> (Run code in Code mode)
+  User --> (Polish text with AI)
+  User --> (Study: flashcards and quiz)
+  User --> (Dictate with voice typing)
+  User --> (Read aloud)
+  User --> (Save to cloud and version history)
+  (Save to cloud and version history) ..> (Sign in) : <<include>>
+  (Sign in) --> G
+  (Polish text with AI) --> AI
+  (Study: flashcards and quiz) --> AI
+  (Run code in Code mode) --> J
+}
+@enduml

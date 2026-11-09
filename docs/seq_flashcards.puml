@@ -1,0 +1,19 @@
+@startuml
+title Flashcards
+actor User
+participant StudyPanel
+participant StudyService
+participant AIProvider
+participant StudyDAO
+participant FlashcardView
+User -> StudyPanel : Study > Flashcards (5/10/15)
+StudyPanel -> StudyService : flashcards(text, n) [worker]
+StudyService -> AIProvider : generate(STRICT JSON prompt)
+AIProvider --> StudyService : reply
+StudyService -> StudyService : Gson parse + validate
+alt invalid
+  StudyService -> AIProvider : generate(prompt + retry hint) (once)
+end
+StudyPanel -> StudyDAO : save set + cards (transaction, if signed in)
+StudyPanel -> FlashcardView : show cards (EDT)
+@enduml

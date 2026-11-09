@@ -1,0 +1,102 @@
+@startuml
+title TextCraft - main classes
+interface FileFormatHandler { supports(ext) ; read(File) ; write(doc, File) }
+abstract class AbstractFormatHandler
+class TxtHandler
+class MdHandler
+class RtfHandler
+class HtmlHandler
+class DocxHandler
+class PdfHandler
+class FileHandlerFactory
+FileFormatHandler <|.. AbstractFormatHandler
+AbstractFormatHandler <|-- TxtHandler
+AbstractFormatHandler <|-- MdHandler
+AbstractFormatHandler <|-- RtfHandler
+AbstractFormatHandler <|-- HtmlHandler
+AbstractFormatHandler <|-- DocxHandler
+AbstractFormatHandler <|-- PdfHandler
+FileHandlerFactory ..> FileFormatHandler
+
+interface AIProvider { generate(prompt) }
+abstract class AbstractAIProvider
+class GeminiProvider
+class MockAIProvider
+AIProvider <|.. AbstractAIProvider
+AbstractAIProvider <|-- GeminiProvider
+AbstractAIProvider <|-- MockAIProvider
+class AIService
+class StudyService
+class PromptBuilder
+AIService --> AIProvider
+StudyService --> AIProvider
+AIService ..> PromptBuilder
+
+interface CodeRunner { run(lang, code, stdin) ; cancel() }
+class Judge0Runner
+class LocalProcessRunner
+CodeRunner <|.. Judge0Runner
+CodeRunner <|.. LocalProcessRunner
+class CodeRunService
+CodeRunService --> CodeRunner
+
+interface SpeechRecognizer
+class GoogleSpeechRecognizer
+SpeechRecognizer <|.. GoogleSpeechRecognizer
+interface TextToSpeechService
+class SystemTtsService
+TextToSpeechService <|.. SystemTtsService
+class VoiceService
+class QuotaGuard
+VoiceService --> SpeechRecognizer
+VoiceService --> QuotaGuard
+
+interface "GenericDAO<T,ID>" as GenericDAO
+class UserDAO
+class DocumentDAO
+class VersionDAO
+class SettingsDAO
+class StudyDAO
+GenericDAO <|.. UserDAO
+GenericDAO <|.. DocumentDAO
+GenericDAO <|.. VersionDAO
+GenericDAO <|.. SettingsDAO
+GenericDAO <|.. StudyDAO
+class DocumentService
+DocumentService --> DocumentDAO
+DocumentService --> VersionDAO
+class AuthService
+AuthService --> UserDAO
+AuthService --> GoogleAuthService
+class SessionManager <<Singleton>>
+class DatabaseConnection <<Singleton>>
+class ThemeManager <<Singleton>>
+
+interface TextEditor
+class RichEditorPanel
+class CodeEditorPanel
+TextEditor <|.. RichEditorPanel
+TextEditor <|.. CodeEditorPanel
+class MainFrame
+MainFrame o-- RichEditorPanel
+MainFrame o-- CodeEditorPanel
+MainFrame o-- AIPanel
+MainFrame o-- StudyPanel
+MainFrame o-- OutputPanel
+MainFrame ..> DocumentService
+MainFrame ..> AuthService
+
+class User
+class Document
+class DocumentVersion
+class FlashcardSet
+class Flashcard
+class Quiz
+class QuizQuestion
+User "1" o-- "*" Document
+Document "1" o-- "*" DocumentVersion
+User "1" o-- "*" FlashcardSet
+FlashcardSet "1" o-- "*" Flashcard
+User "1" o-- "*" Quiz
+Quiz "1" o-- "*" QuizQuestion
+@enduml

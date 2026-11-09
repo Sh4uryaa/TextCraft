@@ -1,0 +1,5 @@
+target/
+config/app.properties
+*.iml
+.idea/
+.vscode/

@@ -1,0 +1,18 @@
+@startuml
+title Run code
+actor User
+participant MainFrame
+participant CodeRunService
+participant Judge0Runner
+participant OutputPanel
+participant CompileHistoryDAO
+User -> MainFrame : F5
+MainFrame -> OutputPanel : showRunning()
+MainFrame -> CodeRunService : run(lang, code, stdin) [worker]
+CodeRunService -> Judge0Runner : run()
+Judge0Runner -> Judge0Runner : POST /submissions, poll (max 10 s)
+Judge0Runner --> CodeRunService : CompileResult
+CodeRunService -> CompileHistoryDAO : save (if signed in)
+CodeRunService --> MainFrame : result (EDT)
+MainFrame -> OutputPanel : showResult()
+@enduml

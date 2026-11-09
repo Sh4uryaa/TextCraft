@@ -1,0 +1,21 @@
+@startuml
+title Voice typing
+actor User
+participant MainFrame
+participant VoiceService
+participant QuotaGuard
+participant MicRecorder
+participant GoogleSpeechRecognizer as REST
+participant VoiceUsageDAO
+User -> MainFrame : Ctrl+Alt+M (start)
+MainFrame -> VoiceService : listen(lang) [worker]
+VoiceService -> QuotaGuard : checkAllowed()
+VoiceService -> MicRecorder : record() up to 60 s
+User -> MainFrame : Ctrl+Alt+M (stop)
+MainFrame -> VoiceService : stopRecording()
+VoiceService -> REST : recognize(pcm, lang) (speech:recognize)
+REST --> VoiceService : transcript
+VoiceService -> QuotaGuard : record(seconds) -> VoiceUsageDAO
+VoiceService --> MainFrame : text after voice commands
+MainFrame -> MainFrame : insert at caret, update "Voice minutes x/60"
+@enduml

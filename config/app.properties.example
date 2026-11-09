@@ -1,0 +1,29 @@
+# Copy to config/app.properties (git-ignored) and fill in. The app also works with NO file (offline mode).
+
+# ---- UI -------------------------------------------------------------------
+ui.theme=LIGHT
+
+# ---- MySQL 8 (local, Cloud SQL or a VM: only the URL changes) --------------
+# Use a restricted user (SELECT, INSERT, UPDATE, DELETE; CREATE only for the first start).
+# Cloud SQL: use the instance public IP with "authorized networks" or the Cloud SQL Auth Proxy (127.0.0.1).
+db.url=jdbc:mysql://localhost:3306/textcraft?useSSL=true&requireSSL=false&serverTimezone=UTC
+db.user=textcraft_app
+db.password=change-me
+
+# ---- Gemini (AI + Study). Key from https://aistudio.google.com ------------
+gemini.apiKey=
+gemini.model=gemini-2.0-flash
+# ai.provider=mock   # offline fake AI, handy for trying the UI
+
+# ---- Google sign-in: OAuth client of type "Desktop app" --------------------
+google.clientId=
+google.clientSecret=
+
+# ---- Voice typing: Speech-to-Text V1 REST key (restrict it to the Speech API)
+speech.apiKey=
+voice.monthlyCapMinutes=60
+
+# ---- Code runner -----------------------------------------------------------
+judge0.url=https://ce.judge0.com
+# judge0.authToken=
+# code.runner=auto      # auto (Judge0, then local tools) | judge0 | local

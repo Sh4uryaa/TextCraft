@@ -1,0 +1,91 @@
+@startuml
+title TextCraft - ER diagram
+hide circle
+entity users { *id : BIGINT
+ google_id : VARCHAR UNIQUE
+ display_name
+ avatar_url
+ username UNIQUE
+ *email UNIQUE
+ password_hash
+ salt
+ created_at }
+entity documents { *id
+ user_id FK
+ title
+ doc_type RICH|CODE
+ language
+ content LONGTEXT
+ created_at
+ updated_at }
+entity document_versions { *id
+ document_id FK
+ content LONGTEXT
+ saved_at }
+entity ai_history { *id
+ user_id FK
+ action
+ input_text
+ output_text
+ model
+ created_at }
+entity compile_history { *id
+ user_id FK
+ language
+ source_code
+ stdin_text
+ output_text
+ status
+ run_ms
+ created_at }
+entity user_settings { *user_id PK FK
+ theme
+ default_font
+ default_font_size
+ gemini_model
+ voice_language
+ voice_speed
+ lite_mode }
+entity voice_usage { *user_id FK
+ *month YYYY-MM
+ seconds_used }
+entity flashcard_sets { *id
+ user_id FK
+ document_id FK null
+ title
+ created_at }
+entity flashcards { *id
+ set_id FK
+ question
+ answer }
+entity quizzes { *id
+ user_id FK
+ document_id FK null
+ title
+ created_at }
+entity quiz_questions { *id
+ quiz_id FK
+ question
+ option_a..option_d
+ correct_option
+ explanation }
+entity quiz_attempts { *id
+ quiz_id FK
+ user_id FK
+ score
+ total
+ taken_at }
+users ||--o{ documents
+documents ||--o{ document_versions
+users ||--o{ ai_history
+users ||--o{ compile_history
+users ||--|| user_settings
+users ||--o{ voice_usage
+users ||--o{ flashcard_sets
+flashcard_sets ||--o{ flashcards
+users ||--o{ quizzes
+quizzes ||--o{ quiz_questions
+quizzes ||--o{ quiz_attempts
+documents |o--o{ flashcard_sets : SET NULL
+documents |o--o{ quizzes : SET NULL
+@enduml

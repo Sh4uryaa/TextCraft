@@ -1,0 +1,21 @@
+@startuml
+title AI refine
+actor User
+participant MainFrame
+participant AIPanel
+participant AIService
+participant PromptBuilder
+participant AIProvider
+participant AIHistoryDAO
+User -> MainFrame : select text, AI > Improve
+MainFrame -> AIPanel : run(action)
+AIPanel -> AIService : run(action, text) [worker]
+AIService -> PromptBuilder : build(action, tone, text)
+AIService -> AIProvider : generate(prompt)
+AIProvider --> AIService : rewritten text
+AIService -> AIHistoryDAO : save (if signed in)
+AIService --> AIPanel : result (EDT)
+AIPanel -> User : show result
+User -> AIPanel : Replace
+AIPanel -> MainFrame : replaceRange (one undoable edit)
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+title Save to cloud
+actor User
+participant MainFrame
+participant DocumentService
+participant DocumentDAO
+participant VersionDAO
+database MySQL
+User -> MainFrame : File > Save to cloud
+MainFrame -> MainFrame : content = HTML (rich) or raw text (code)
+MainFrame -> DocumentService : saveToCloud(userId, doc, content) [worker]
+DocumentService -> MySQL : BEGIN (autocommit off)
+DocumentService -> DocumentDAO : save(connection, doc)
+DocumentService -> VersionDAO : insert(connection, version)
+alt both succeed
+  DocumentService -> MySQL : COMMIT
+  MainFrame <-- DocumentService : saved document
+  MainFrame -> User : toast "Saved to cloud"
+else any error
+  DocumentService -> MySQL : ROLLBACK
+  MainFrame <-- DocumentService : DatabaseException
+  MainFrame -> User : error dialog
+end
+@enduml

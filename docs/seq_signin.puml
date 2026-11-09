@@ -1,0 +1,24 @@
+@startuml
+title Sign in with Google
+actor User
+participant MainFrame
+participant AuthService
+participant GoogleAuthService as GAS
+participant Browser
+participant Google
+participant UserDAO
+participant SessionManager
+User -> MainFrame : Sign in
+MainFrame -> AuthService : signInWithGoogle() [worker thread]
+AuthService -> GAS : signIn()
+GAS -> Browser : open consent URL (PKCE)
+Browser -> Google : user approves
+Google -> GAS : code on http://127.0.0.1:port
+GAS -> Google : exchange code for tokens
+GAS -> Google : userinfo (sub, email, name, picture)
+GAS --> AuthService : Profile (refresh token saved in ~/.textcraft)
+AuthService -> UserDAO : find by google_id or create
+AuthService -> SessionManager : setUser(user)
+SessionManager -> MainFrame : onSessionChanged (EDT)
+MainFrame -> MainFrame : show avatar, load settings (theme, Lite)
+@enduml
